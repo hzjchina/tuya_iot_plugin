@@ -16,6 +16,7 @@ A new Flutter plugin for tuya
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
+  s.dependency 'TuyaSmartActivator','0.3.4'
   s.platform = :ios, '8.0'
 
   # Flutter.framework does not contain a i386 slice.
