@@ -1,0 +1,44 @@
+group 'com.airekey.tuya_iot_plugin'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven-other.tuya.com/repository/maven-releases/"
+        }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven-other.tuya.com/repository/maven-releases/"
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+dependencies {
+//    implementation 'com.tuya.smart:iot-app-sdk:1.0.2'
+    implementation 'com.tuya.smart:deviceActivator:3.15.3'
+//    implementation 'com.alibaba:fastjson:1.1.67.android'
+}
