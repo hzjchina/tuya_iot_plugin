@@ -69,13 +69,13 @@ public class TuyaIotPlugin implements FlutterPlugin, MethodCallHandler {
 
     Object ssid = map.get("ssid");
 
-    Log.d(TAG,"SSID: "+ssid);
+    //Log.d(TAG,"SSID: "+ssid);
     Object password = map.get("password");
 
-    Log.d(TAG,"password: "+password);
+   // Log.d(TAG,"password: "+password);
     Object authToken = map.get("authToken");
 
-    Log.d(TAG,"pairToken: "+authToken);
+  //  Log.d(TAG,"pairToken: "+authToken);
 
     if(ssid == null || password == null || authToken == null){
       result.success(false);
@@ -83,7 +83,7 @@ public class TuyaIotPlugin implements FlutterPlugin, MethodCallHandler {
 //      TuyaConfig.getEZInstance().startConfig((String)ssid,(String)password,(String)authToken);//
       TuyaEZConfig.getInstance().startConfig((String)ssid,(String)password,(String)authToken);//
 
-      Log.d(TAG,"startConfig:-------> ");
+    //  Log.d(TAG,"startConfig:-------> ");
       result.success(true);
     }
 
@@ -91,7 +91,7 @@ public class TuyaIotPlugin implements FlutterPlugin, MethodCallHandler {
   public void stopConfig(MethodCall call, Result result) {
 
     TuyaConfig.getEZInstance().stopConfig();
-    Log.d(TAG,"<----------- :stopConfig");
+  //  Log.d(TAG,"<----------- :stopConfig");
     result.success(true);
   }
 

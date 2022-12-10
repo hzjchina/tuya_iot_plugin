@@ -29,26 +29,26 @@
     NSDictionary *arguments = call.arguments;
     
     NSString *ssid = arguments[@"ssid"];
-    NSLog(@"TuyaIotPlugin ssid: %@",ssid);
+    //NSLog(@"TuyaIotPlugin ssid: %@",ssid);
     
     NSString *password = arguments[@"password"];
-    NSLog(@"TuyaIotPlugin password: %@",password);
+   // NSLog(@"TuyaIotPlugin password: %@",password);
     
     NSString *authToken = arguments[@"authToken"];
-    NSLog(@"TuyaIotPlugin authToken: %@",authToken);
+   // NSLog(@"TuyaIotPlugin authToken: %@",authToken);
     
     if(ssid == nil || password == nil || authToken == nil){
-        result(@"false");
+        result(@NO);
     }else{
             [[TuyaSmartActivator sharedInstance] startConfigWiFiWithMode:TYActivatorModeEZ ssid:ssid password:password token:authToken];
-        result(@"true");
+        result(@YES);
     }
 }
 
 
 - (void)stopConfig:(FlutterMethodCall*)call result:(FlutterResult)result {
     [[TuyaSmartActivator sharedInstance] stopConfigWiFi];
-    result(@"true");
+    result(@YES);
 }
 
 //    // EZ
