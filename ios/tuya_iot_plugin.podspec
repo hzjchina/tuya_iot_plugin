@@ -15,10 +15,19 @@ A new Flutter plugin for tuya
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
+  s.vendored_libraries = 'Classes/*.a'
   s.dependency 'Flutter'
-  s.dependency 'TuyaSmartActivator','0.3.4'
+# s.dependency 'TuyaSmartActivator','0.3.4'
   s.platform = :ios, '8.0'
 
-  # Flutter.framework does not contain a i386 slice.
+  s.frameworks = 'Foundation'
+  s.libraries  = 'c++', 'z'
+
+  s.dependency 'CocoaAsyncSocket'
+  s.dependency 'TYBluetooth', '< 10.0'
+  s.dependency 'TuyaSmartUtil'
+
+
+# Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
 end
