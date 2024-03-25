@@ -12,13 +12,13 @@ class TuyaIotPlugin {
     return version;
   }
 
-  static Future<bool> startConfig(String ssid,String password,String authToken) async {
-    final bool res = await _channel.invokeMethod('startConfig',{"ssid":ssid,"password":password,"authToken":authToken});
+  static Future<bool> startConfig(String ssid,String password,String authToken,String pairType) async {
+    final bool res = await _channel.invokeMethod('startConfig',{"ssid":ssid,"password":password,"authToken":authToken,"pairType":pairType});
     return res;
   }
 
-  static Future<bool> stopConfig() async {
-    final bool res = await _channel.invokeMethod('stopConfig');
+  static Future<bool> stopConfig(String pairType) async {
+    final bool res = await _channel.invokeMethod('stopConfig',{"pairType":pairType});
     return res;
   }
 

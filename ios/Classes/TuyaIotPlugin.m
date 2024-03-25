@@ -37,18 +37,36 @@
     NSString *authToken = arguments[@"authToken"];
    // NSLog(@"TuyaIotPlugin authToken: %@",authToken);
     
-    if(ssid == nil || password == nil || authToken == nil){
+    NSString *pairType = arguments[@"pairType"];
+    
+    if(ssid == nil || password == nil || authToken == nil || pairType == nil){
         result(@NO);
     }else{
+        if ([pairType isEqualToString:@"wired"]) {
+            [[TuyaSmartActivator sharedInstance] startConfigWiredDeviceWithToken:authToken];
+        } else {//wireless
             [[TuyaSmartActivator sharedInstance] startConfigWiFiWithMode:TYActivatorModeEZ ssid:ssid password:password token:authToken];
+        }
         result(@YES);
     }
 }
 
 
 - (void)stopConfig:(FlutterMethodCall*)call result:(FlutterResult)result {
-    [[TuyaSmartActivator sharedInstance] stopConfigWiFi];
-    result(@YES);
+    NSDictionary *arguments = call.arguments;
+    NSString *pairType = arguments[@"pairType"];
+    
+    if(pairType == nil){
+        result(@NO);
+    }else{
+//        if ([pairType isEqualToString:@"wired"]) {
+//            [[TuyaSmartActivator sharedInstance] stopConfigWiFi];
+//        }else{
+//            [[TuyaSmartActivator sharedInstance] stopConfigWiFi];
+//        }
+        [[TuyaSmartActivator sharedInstance] stopConfigWiFi];
+        result(@YES);
+    }
 }
 
 //    // EZ

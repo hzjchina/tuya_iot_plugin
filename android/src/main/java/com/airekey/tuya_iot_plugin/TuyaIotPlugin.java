@@ -75,25 +75,38 @@ public class TuyaIotPlugin implements FlutterPlugin, MethodCallHandler {
    // Log.d(TAG,"password: "+password);
     Object authToken = map.get("authToken");
 
+    Object pairType = map.get("pairType");
+
   //  Log.d(TAG,"pairToken: "+authToken);
 
-    if(ssid == null || password == null || authToken == null){
+    if(ssid == null || password == null || authToken == null || pairType == null){
       result.success(false);
     }else{
 //      TuyaConfig.getEZInstance().startConfig((String)ssid,(String)password,(String)authToken);//
-      TuyaEZConfig.getInstance().startConfig((String)ssid,(String)password,(String)authToken);//
-
-    //  Log.d(TAG,"startConfig:-------> ");
+      if("wired".equals(pairType)){
+        TuyaConfig.getWiredConfigInstance().startConfig(context,(String)authToken);
+      }else{//wireless
+        TuyaEZConfig.getInstance().startConfig((String)ssid,(String)password,(String)authToken);//
+      }
+//      Log.d(TAG,"startConfig:-------> ");
       result.success(true);
     }
 
   }
   public void stopConfig(MethodCall call, Result result) {
-
-    TuyaConfig.getEZInstance().stopConfig();
-  //  Log.d(TAG,"<----------- :stopConfig");
-    result.success(true);
+    HashMap<String, Object> map = call.arguments();
+    Object pairType = map.get("pairType");
+    if(pairType == null){
+      result.success(false);
+    }else{
+      if("wired".equals(pairType)){
+        TuyaConfig.getWiredConfigInstance().stopConfig();
+      }else{
+        TuyaConfig.getEZInstance().stopConfig();
+      }
+//      Log.d(TAG,"<----------- :stopConfig");
+      result.success(true);
+    }
   }
-
 
 }
